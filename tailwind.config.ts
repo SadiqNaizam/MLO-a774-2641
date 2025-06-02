@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -61,13 +62,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+        // Added based on PRD color names and usage (e.g., text-secondaryText)
+        secondaryText: 'hsl(var(--muted-foreground))', // Maps to PRD #6B7280 via --muted-foreground CSS var
+        accentBlue: 'hsl(var(--primary))',            // Maps to PRD #06B6D4 via --primary CSS var
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				lg: 'var(--radius)', // var(--radius) is 0.5rem from PRD rounded-lg
+				md: 'calc(var(--radius) - 2px)', // 0.5rem - 2px = 0.375rem (Tailwind default md)
+				sm: 'calc(var(--radius) - 4px)'  // 0.5rem - 4px = 0.25rem (Tailwind default sm)
 			},
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans], // PRD: primaryFont is Inter
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
